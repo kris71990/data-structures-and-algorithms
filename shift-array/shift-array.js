@@ -5,7 +5,8 @@
 module.exports = (a, b) => {
   const arr1 = [];
   const arr2 = [];
-  const i = a.length / 2;
+  const i = Math.floor(a.length / 2);
+  
   for (let j = 0; j < i; j++) {
     arr1.push(a[j]);
   }
