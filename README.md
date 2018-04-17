@@ -5,5 +5,5 @@
 Reverse and array without using reverse method
 
 ### Solution
-![alt text][img]
-[img]: /assets/reverse-an-array.jpg
+![alt text][logo]
+[logo]: /assets/reverse-an-array.jpg
