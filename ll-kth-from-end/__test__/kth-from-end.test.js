@@ -26,5 +26,6 @@ describe('find kth from end of linked list', () => {
     test.append(6);
     test.append(7);
     expect(test.kthFromEnd(7)).toBeNull();
+    expect(test.kthFromEnd(2)).not.toBeNull();
   });
 });
