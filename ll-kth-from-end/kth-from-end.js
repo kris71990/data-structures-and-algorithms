@@ -33,10 +33,12 @@ module.exports = class LinkedList {
     let currentNode = this.head;
     let counterNode = this.head;
     let length = 0;
+    
     while (currentNode) {
       currentNode = currentNode.next;
       length += 1;
     }
+    if (k > length) return null; 
 
     for (let i = 0; i < length - k - 1; i++) {
       counterNode = counterNode.next;
