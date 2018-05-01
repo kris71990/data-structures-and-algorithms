@@ -8,23 +8,19 @@ class Queue {
 
   enqueue(value) {
     this.stack1.push(value);
-    if (this.stack2.length === 0) {
-      this.stack2.push(this.stack1[0]);
-      return this;
-    }
-    this.stack2.reverse().push(value);
     return this;
   }
 
   dequeue() {
-    if (this.stack2.length > 0) return this.stack2.reverse().pop().reverse();
-    this.stack2.push(this.stack1[0]);
+    if (this.stack2.length === 0) {
+      for (let i = this.stack1.length - 1; i >= 0; i--) {
+        this.stack2.push(this.stack1[i]);
+      }
+    }
     this.stack2.pop();
+    this.stack1.shift();
     return this;
   }
 }
-const test = new Queue();
-test.stack1 = [1, 2, 3, 4, 5];
-test.stack2 = [];
 
-console.log(test.enqueue('cat'));
+export default Queue;
