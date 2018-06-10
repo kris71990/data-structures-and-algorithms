@@ -45,86 +45,43 @@ class BinarySearchTree {
     return this._find(rootNode.left, value);
   }
 
+  findMin(node) {
+    let currentNode = node;
+    while (currentNode === currentNode.left) {
+      currentNode = currentNode.left;
+    }
+    console.log(this);
+    return currentNode;
+  }
+
   remove(value) {
-    const oldNode = this.root;
-    const nodeToBeRemoved = this.findForRemove(value, oldNode);
-    return this._remove(nodeToBeRemoved, oldNode);
+    if (!this.find(value)) return null;
+    const rootNode = this.root;
+    return this._remove(rootNode, value);
   }
 
-  _remove(rootNode, oldNode) {
-    let position = false;
-    if (oldNode.left === rootNode) {
-      position = true; 
-    }
-    if (!rootNode.left && !rootNode.right) {
-      if (position === false) { 
-        oldNode.left = null; 
-      } else { 
-        oldNode.right = null; 
-      }
-    }
-    if (rootNode.left && !rootNode.right) {
-      if (position === true) { 
-        oldNode.left = rootNode.left; 
-      } else { 
-        oldNode.right = rootNode.left; 
-      } 
-    } else if (!rootNode.left && rootNode.right) {
-      if (position === true) { 
-        oldNode.left = rootNode.right; 
-      } else { 
-        oldNode.right = rootNode.left; 
-      }
-    }
+  _remove(rootNode, value) {
+    if (!rootNode) return rootNode;
 
-    if (rootNode.left && rootNode.right) {
-      // const currentDifference = 0;
-      let nodeToMove;
-      this.removeValueComparer(rootNode, rootNode.value);
-      if (rootNode.left === true) {
-        oldNode.left = nodeToMove;
-      } else {
-        oldNode.right = nodeToMove;
+    if (value < rootNode.value) {
+      rootNode.left = this._remove(rootNode.left, value);
+    } else if (value > rootNode.value) {
+      rootNode.right = this._remove(rootNode.right, value);
+    } else {
+      if (!rootNode.left) {
+        const temp = rootNode.right;
+        rootNode = null;
+        return temp;
+      } else if (!rootNode.right) {
+        const temp = rootNode.left;
+        rootNode = null;
+        return temp;
       }
+      const temp = this.findMin(rootNode.right);
+      rootNode.value = temp.value;
+      rootNode.right = this._remove(rootNode.right, temp.value);
     }
-  }
-
-  findForRemove(value, oldNode) {
-    if (!this.root) {
-      return null;    
-    }      
-    if (this.root.value === value) {
-      return (this.root);
-    }
-    return this._findForRemove(this.root, value, oldNode);              
-  }                
-
-  _findForRemove(rootNode, value, oldNode) {
-    if (!rootNode) {                  
-      return null;                        
-    } else if (rootNode.value === value) {                
-      oldNode = rootNode;                            
-      return (rootNode, value, oldNode);
-    } else if (rootNode.value < value) {
-      oldNode = rootNode;                                
-      return this._findForRemove(rootNode.right, value, oldNode);
-    }
-    this.oldNode = rootNode;                                    
-    return this._findForRemove(rootNode.left, value, oldNode);
-  }
-  
-  removeValueComparer(comparingNode, valueForComparison) {
-    if (Math.abs(comparingNode.value - valueForComparison) < this.currentDifference) {
-      this.nodeToMove = comparingNode;
-      this.currentDifference = Math.abs(comparingNode.value - valueForComparison); 
-    }
-    if (comparingNode.left) {
-      return this.removeValueComparer(comparingNode.left); 
-    }
-    if (comparingNode.right) {
-      return this.removeValueComparer(comparingNode.right);
-    }
-    return null;
+    return rootNode;
   }
 }
 

@@ -19,7 +19,7 @@ describe('Binary Search Tree tests', () => {
   
   test('Binary Search Tree methods', () => {
     const methods = Object.getOwnPropertyNames(BinarySearchTree.prototype);
-    expect(methods).toHaveLength(10);
+    expect(methods).toHaveLength(8);
   });
 
   test('insert(val)', () => {
@@ -55,9 +55,27 @@ describe('Binary Search Tree tests', () => {
     expect(findOne.right.value).toEqual(3);
   });
 
+  test('find(val) of value that does not exist in tree returns null', () => {
+    expect(bst.find(112)).toBeNull();
+    expect(bst.find(98)).toBeNull();
+    expect(bst.find(233)).toBeNull();
+  });
+
   test('remove(val) finds node in tree and removes it', () => {
     expect(bst.root.left.value).toEqual(1);
     bst.remove(1);
     expect(bst.root.left.value).toEqual(3);
+    
+    expect(bst.root.left.value).toEqual(3);
+    bst.remove(3);
+    expect(bst.root.left.value).toEqual(6);
+
+    expect(bst.root.value).toEqual(9);
+    bst.remove(9);
+    expect(bst.root.value).toEqual(12);
+  });
+
+  test('remove(val) of value that does not exist returns null', () => {
+    expect(bst.remove(232)).toBeNull();
   });
 });
