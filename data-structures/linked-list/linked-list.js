@@ -137,9 +137,8 @@ class LinkedList {
     while (currentNode.next.value !== value) {
       currentNode = currentNode.next;
     }
-    const removed = currentNode.next.value;
     currentNode.next = currentNode.next.next;
-    return removed;
+    return this;
   }
 
   // Big 0 runtime - O(n)

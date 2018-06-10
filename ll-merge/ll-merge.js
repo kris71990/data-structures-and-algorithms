@@ -1,7 +1,5 @@
 'use strict';
 
-// const foo = module.exports = {};
-
 class Node {
   constructor(value) {
     this.value = value;

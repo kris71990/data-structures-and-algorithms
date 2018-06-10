@@ -10,4 +10,8 @@ describe('bracket validation', () => {
     expect(bracketValidation('([]{)}')).toEqual(false);
     expect(bracketValidation('((d((dd[((dd))]{})))ff)')).toEqual(true);
   });
+
+  test('if no input, return null', () => {
+    expect(bracketValidation()).toBeNull();
+  });
 });

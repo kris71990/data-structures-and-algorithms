@@ -37,16 +37,14 @@ class HashMap {
 
   get(key) {
     const hash = this._generateHash(key);
-    const error = new Error(`No entry for ${key}`);
 
     if (!this._buckets[hash]) {
-      throw error;
+      return undefined;
     }
 
     const node = this._buckets[hash];
     if (this._buckets[hash].length() === 1) {
-      if (node) return node.head.value.htvalue;
-      return error;
+      return node.head.value.htvalue;
     } 
     return `${node.length()} collisions at this hash`;
   }
@@ -59,15 +57,13 @@ class HashMap {
       throw error;
     }
 
-    const node = this._buckets[hash].find(foundNode => foundNode.value.key === key);
+    const node = this._buckets[hash];
 
     if (node) {
-      this._buckets[hash] = this._buckets[hash].remove(node);
-      console.log('Successfully removed');
-      return 'Successfully removed';
+      this._buckets[hash].remove(node.head.value);
+      delete this._buckets[hash];
+      console.log('node removed');
     }
-
-    return error;
   }
 }
 
