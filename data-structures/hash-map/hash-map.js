@@ -1,6 +1,7 @@
 'use strict';
 
 import LinkedList from '../linked-list/linked-list';
+import Node from '../linked-list/node-ll';
 
 class HashMap {
   constructor(capacity = 50) {
@@ -30,7 +31,7 @@ class HashMap {
       return this;
     }
 
-    this._buckets[hash].append(new LinkedList().insertAtEnd({ key, htvalue }));
+    this._buckets[hash].insertAtEnd(new Node({ key, htvalue }));
     return this;
   }
 
@@ -43,10 +44,11 @@ class HashMap {
     }
 
     const node = this._buckets[hash];
-    // .find(foundNode => foundNode.head.value.key === key);
-    console.log(node);
-    if (node) return node.head.value.htvalue;
-    return error;
+    if (this._buckets[hash].length() === 1) {
+      if (node) return node.head.value.htvalue;
+      return error;
+    } 
+    return `${node.length()} collisions at this hash`;
   }
 
   delete(key) {

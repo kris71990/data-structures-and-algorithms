@@ -25,12 +25,13 @@ describe('Hash Map tests', () => {
     map.set('2', 'testing2');
     map.set('3', 'testing3');
     map.set('4', 'testing4');
-    expect(map._buckets['1']).toBeInstanceOf(LinkedList);
-    expect(map._buckets['1'].length()).toEqual(1);
-    expect(map._buckets['2'].length()).toEqual(1);
-    console.log(map._buckets);
-    // expect(map._buckets['3'].length()).toEqual(1);
-    // expect(map._buckets['4'].length()).toEqual(1);
+    expect(map._buckets[0]).toBeInstanceOf(LinkedList);
+
+    const lists = map._buckets.filter(list => list instanceof LinkedList);
+    expect(lists).toHaveLength(4);
+
+    map.set('1', 'duplicate');
+    expect(lists).toHaveLength(4);
   });
 
   test('get(key) finds object in map', () => {
@@ -39,10 +40,15 @@ describe('Hash Map tests', () => {
     map.set('2', 'testing2');
     map.set('3', 'testing3');
     map.set('4', 'testing4');
+    map.set('1', 'duplicate');
 
-    expect(map.get('1')).toEqual('testing1');
+    expect(map.get('1')).toEqual('2 collisions at this hash');
     expect(map.get('2')).toEqual('testing2');
     expect(map.get('3')).toEqual('testing3');
     expect(map.get('4')).toEqual('testing4');
+  });
+
+  test('delete(key) removes item from hash', () => {
+
   });
 });
