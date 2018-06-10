@@ -14,7 +14,6 @@ function breadthTraversal(rootNode) {
     if (first.left) queue.enqueue(first.left);
     if (first.right) queue.enqueue(first.right);
   }
-  console.log(traversedNodes);
   return traversedNodes;
 }
 
