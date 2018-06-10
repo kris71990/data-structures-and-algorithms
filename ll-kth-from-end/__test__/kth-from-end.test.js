@@ -1,6 +1,6 @@
 'use strict';
 
-const LinkedList = require('../kth-from-end');
+import LinkedList from '../kth-from-end';
 
 describe('find kth from end of linked list', () => {
   test('should return node k nodes from end of list', () => {

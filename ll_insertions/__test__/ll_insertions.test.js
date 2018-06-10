@@ -1,6 +1,6 @@
 'use strict';
 
-const LinkedList = require('../ll_insertions');
+import LinkedList from '../ll_insertions';
 
 describe('linked-list insertions', () => {
   test('Should add the given value at end of list', () => {

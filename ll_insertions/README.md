@@ -2,7 +2,7 @@
 
 
 ## Challenge
-Given a Linked List class, add append, insertBefore, and insertAfter methods to it.
+Add append, insertBefore, and insertAfter methods to Linked List class.
 
 ## Solution
 ![](../assets/ll_insertions.jpg)

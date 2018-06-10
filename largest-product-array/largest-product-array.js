@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (arr) => {
+const largestProduct = (arr) => {
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
@@ -15,3 +15,5 @@ module.exports = (arr) => {
   }
   return sum;
 };
+
+export default largestProduct;

@@ -1,14 +1,8 @@
 'use strict';
 
+import Node from '../data-structures/linked-list/node-ll';
 
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
-
-module.exports = class LinkedList {
+class LinkedList {
   constructor() {
     this.head = null;
   }
@@ -72,4 +66,6 @@ module.exports = class LinkedList {
     }
     return this;
   }
-};
+}
+
+export default LinkedList;
