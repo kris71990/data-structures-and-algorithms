@@ -22,5 +22,7 @@ Other directories contain various problems solved with the above data structures
 
 #### Testing
 `git clone https://github.com/kris71990/data-structures-and-algorithms.git`
+
 `npm i`
+
 `npm run test`
