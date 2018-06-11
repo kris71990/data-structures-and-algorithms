@@ -8,10 +8,4 @@ class Node {
   }
 }
 
-class BinaryTree {
-  constructor(root = null) {
-    this.root = root;
-  }
-}
-
-export { Node, BinaryTree };
+export default Node;

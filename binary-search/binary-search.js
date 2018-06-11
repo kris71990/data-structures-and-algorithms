@@ -1,8 +1,19 @@
 'use strict';
 
-module.exports = (arr, index) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === index) return i;
+const binarySearch = (arr, val) => {
+  let start = 0;
+  let stop = arr.length - 1;
+  let mid = Math.floor((start + stop) / 2);
+
+  while (arr[mid] !== val && start < stop) {
+    if (val < arr[mid]) {
+      stop = mid - 1;
+    } else {
+      start = mid + 1;
+    }
+    mid = Math.floor((start + stop) / 2);
   }
-  return -1;
+  return (arr[mid] !== val) ? -1 : mid;
 };
+
+export default binarySearch;

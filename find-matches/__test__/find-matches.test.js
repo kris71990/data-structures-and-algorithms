@@ -1,24 +1,8 @@
 'use strict';
 
-const findMatches = require('../find-matches');
-
-class KAryNode {
-  constructor(value) {
-    this.value = value;
-    this.children = [];
-  }
-
-  appendChild(value) {
-    const nodeToAppend = new KAryNode(value);
-    this.children.push(nodeToAppend);
-  }
-}
-
-class KAryTree {
-  constructor(root = null) {
-    this.root = root;
-  }
-}
+import findMatches from '../find-matches';
+import KAryTree from '../../data-structures/kary-tree/kary-tree';
+import KAryNode from '../../data-structures/kary-tree/kary-node';
 
 const one = new KAryNode(1);
 one.appendChild(2);
@@ -33,7 +17,7 @@ one.children[1].children[1].appendChild(8);
 
 const kAryTree = new KAryTree(one);
 
-const list = findMatches(one, 3);
+const list = findMatches(kAryTree, 3);
 
 describe('should enter values into Linked List', () => {
   test('list should only include nodes of specified values', () => {
@@ -41,5 +25,9 @@ describe('should enter values into Linked List', () => {
     expect(list.head.next.value.value).toEqual(3);
     expect(list.head.next.next.value.value).toEqual(3);
     expect(list.head.next.next.next).toBeNull();
+  });
+
+  test('if no matches in the tree, return \'no matches\'', () => {
+    expect(findMatches(kAryTree, 12)).toEqual('no matches');
   });
 });

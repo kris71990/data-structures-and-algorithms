@@ -1,8 +1,10 @@
 'use strict';
 
-import Stack from './stack';
+import Stack from '../data-structures/stack/stack';
 
 const bracketValidation = (string) => {
+  if (!string) return null;
+  
   const stack = new Stack();
   for (let i = 0; i < string.length; i++) {
     if (string[i] === '{' || string[i] === '[' || string[i] === '(') {

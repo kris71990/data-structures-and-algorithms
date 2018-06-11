@@ -1,6 +1,7 @@
 'use strict';
 
-import { Node, BinaryTree } from '../binary-tree';
+import Node from '../../data-structures/binary-tree/binary-tree-node';
+import BinaryTree from '../../data-structures/binary-tree/binary-tree';
 import commonValues from '../tree-comparison';
 
 const one = new Node(1);

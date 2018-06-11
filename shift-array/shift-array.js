@@ -2,7 +2,10 @@
 
 // Iterate through first half and second half of array seperately
 // push b to first and concat to second
-module.exports = (a, b) => {
+const shiftArray = (a, b) => {
+  if (!b) return a;
+  if (!(a instanceof Array)) return null;
+
   const arr1 = [];
   const arr2 = [];
   const i = Math.floor(a.length / 2);
@@ -17,3 +20,5 @@ module.exports = (a, b) => {
   arr1.push(b);
   return arr1.concat(arr2);
 };
+
+export default shiftArray;

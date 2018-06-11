@@ -1,26 +1,11 @@
 'use strict';
 
-const Queue = require('./queue');
+import Queue from '../data-structures/queue/queue';
+import KAryNode from '../data-structures/kary-tree/kary-node';
 
-class KAryNode {
-  constructor(value) {
-    this.value = value;
-    this.children = [];
-  }
+const levelTraversal = (root) => {
+  if (!root) return undefined;
 
-  appendChild(value) {
-    const nodeToAppend = new KAryNode(value);
-    this.children.push(nodeToAppend);
-  }
-}
-
-class KAryTree {
-  constructor(root = null) {
-    this.root = root;
-  }
-}
-
-function levelTraversal(root) {
   const queue = new Queue();
   let str = '';
   let currentNode = null;
@@ -44,6 +29,6 @@ function levelTraversal(root) {
     }
   }
   return str;
-}
+};
 
-export { KAryNode, KAryTree, levelTraversal };
+export default levelTraversal;

@@ -1,6 +1,8 @@
 'use strict';
 
-import { Node, BinaryTree, fizzBuzzTree } from '../fizzbuzz-tree';
+import Node from '../../data-structures/binary-tree/binary-tree-node';
+import BinaryTree from '../../data-structures/binary-tree/binary-tree';
+import fizzBuzzTree from '../fizzbuzz-tree';
 
 const one = new Node(1);
 const two = new Node(2);
@@ -32,9 +34,13 @@ const fizzbuzz = fizzBuzzTree(tree.root);
 
 describe('fizzbuzz binary tree', () => {
   test('% 3 = fizz; % 5 = buzz; %3, %5 = fizzbuzz', () => {
-    expect(fizzbuzz.root.left.value).toEqual(2);
-    expect(fizzbuzz.root.right.value).toEqual('fizz');
-    expect(fizzbuzz.root.right.right.value).toEqual('buzz');
-    expect(fizzbuzz.root.left.right.value).toEqual('fizzbuzz');
+    expect(fizzbuzz.left.value).toEqual(2);
+    expect(fizzbuzz.right.value).toEqual('fizz');
+    expect(fizzbuzz.right.right.value).toEqual('buzz');
+    expect(fizzbuzz.left.right.value).toEqual('fizzbuzz');
+  });
+
+  test('should return undefined if no tree', () => {
+    expect(fizzBuzzTree(new BinaryTree().root)).toBeUndefined();
   });
 });

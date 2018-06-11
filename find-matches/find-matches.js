@@ -1,9 +1,10 @@
 'use strict';
 
-const Queue = require('./queue');
-const LinkedList = require('./linked-list');
+import Queue from '../data-structures/queue/queue';
+import LinkedList from '../data-structures/linked-list/linked-list';
 
-module.exports = (root, val) => {
+const findMatches = (tree, val) => {
+  const { root } = tree;
   const queue = new Queue();
   const list = new LinkedList();
   let currentNode = null;
@@ -18,5 +19,8 @@ module.exports = (root, val) => {
       queue.enqueue(currentNode.children[i]);
     }
   }
+  if (!list.head) return 'no matches';
   return list;
 };
+
+export default findMatches;
