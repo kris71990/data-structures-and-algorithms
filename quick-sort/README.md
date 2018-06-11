@@ -1,7 +1,7 @@
 # Quick Sort
 
 ## Challenge
-Implement quick sort to sort an array of numbers
+Implementation of quick sort
 
 ## Solution
 ![](../assets/quick-sort.jpg)
