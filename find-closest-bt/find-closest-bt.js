@@ -7,6 +7,10 @@ const findClosestValue = (bt, target) => {
   let currentNode = bt.root;
 
   while (currentNode !== null) {
+    if (currentNode.value === target) {
+      return currentNode.value;
+    }
+
     const currentNodeDifference = Math.abs(target - currentNode.value);
     const closestElementDifference = Math.abs(target - closestValueSoFar);
 
