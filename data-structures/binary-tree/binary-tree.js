@@ -1,5 +1,6 @@
 'use strict';
 
+import Node from './binary-tree-node';
 import Queue from '../queue/queue';
 
 class BinaryTree {
@@ -7,7 +8,7 @@ class BinaryTree {
     this.root = root;
   }
 
-  breadthTraversal() {
+  breadthFirstTraversal() {
     const queue = new Queue();
     const traversedNodes = [];
     queue.enqueue(this.root);
@@ -20,6 +21,41 @@ class BinaryTree {
     }
     return traversedNodes;
   }
+
+  insert(value) {
+    const nodeToAdd = new Node(value);
+
+    if (!this.root) {
+      this.root = nodeToAdd;
+      return this;
+    }
+
+    const queue = new Queue();
+    queue.enqueue(this.root);
+
+    while (!queue.isEmpty()) {
+      const node = queue.dequeue();
+
+      if (node.left) {
+        queue.enqueue(node.left);
+      } else {
+        node.left = nodeToAdd;
+        return this;
+      }
+
+      if (node.right) {
+        queue.enqueue(node.right);
+      } else {
+        node.right = nodeToAdd;
+        return this;
+      }
+    }
+    return this;
+  }
+
+  // remove(value) {
+   
+  // }
 }
 
 export default BinaryTree;

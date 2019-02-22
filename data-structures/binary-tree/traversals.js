@@ -35,13 +35,34 @@ const preOrderIt = (root) => {
   return vals;
 };
 
-// Recursive In-Order Traversal (Left - Root- Right)
+// Recursive In-Order Traversal (Left - Root - Right)
 const inOrderRec = (root, arr = []) => {
   if (!root) return null;
   inOrderRec(root.left, arr);
   arr.push(root.value);
   inOrderRec(root.right, arr);
   return arr;
+};
+
+// Iterative In-Order Traversal (Left - Root - Right)
+const inOrderIt = (root) => {
+  if (!root) return null;
+
+  let currNode = root;
+  const stack = new Stack();
+  const vals = [];
+
+  while (!stack.isEmpty() || currNode) {
+    if (currNode) {
+      stack.push(currNode);
+      currNode = currNode.left;
+    } else {
+      currNode = stack.pop();
+      vals.push(currNode.value);
+      currNode = currNode.right;
+    }
+  }
+  return vals;
 };
 
 // Recursive Post-Order Traversal (Left - Right - Root)
@@ -85,6 +106,7 @@ export {
   preOrderRec, 
   preOrderIt, 
   inOrderRec,
+  inOrderIt,
   postOrderRec, 
   postOrderIt,
 };

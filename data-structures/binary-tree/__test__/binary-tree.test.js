@@ -2,10 +2,12 @@
 
 import BinaryTree from '../binary-tree';
 import Node from '../binary-tree-node';
+
 import { 
   preOrderIt, 
   preOrderRec,
   inOrderRec,
+  inOrderIt,
   postOrderIt, 
   postOrderRec,
 } from '../traversals';
@@ -40,11 +42,29 @@ describe('Binary Tree tests', () => {
   
   test('Binary Tree methods', () => {
     const methods = Object.getOwnPropertyNames(BinaryTree.prototype);
-    expect(methods).toHaveLength(4);
+    expect(methods).toHaveLength(3);
   });
 
-  test('breadthTraversal should traverse tree by level using a queue', () => {
-    const breadth = tree.breadthTraversal();
+  test('insert nodes into binary tree', () => {
+    const tree2 = new BinaryTree();
+    tree2.insert(1);
+    tree2.insert(2);
+    tree2.insert(3);
+    tree2.insert(4);
+    tree2.insert(5);
+    tree2.insert(6);
+
+    const bt = inOrderRec(tree2.root);
+    expect(bt[0]).toEqual(4);
+    expect(bt[1]).toEqual(2);
+    expect(bt[2]).toEqual(5);
+    expect(bt[3]).toEqual(1);
+    expect(bt[4]).toEqual(6);
+    expect(bt[5]).toEqual(3);
+  });
+
+  test('breadthFirstTraversal should traverse tree by level using a queue', () => {
+    const breadth = tree.breadthFirstTraversal();
     expect(breadth).toBeInstanceOf(Array);
     expect(breadth[0]).toEqual(1);
     expect(breadth[1]).toEqual(2);
@@ -88,6 +108,16 @@ describe('Binary Tree tests', () => {
     expect(pre[9]).toEqual(9);
   });
 
+  test('preOrderRec should return null if no root', () => {
+    const bt = new BinaryTree();
+    expect(preOrderRec(bt.root)).toBeNull();
+  });
+
+  test('preOrderIt should return null if no root', () => {
+    const bt = new BinaryTree();
+    expect(preOrderIt(bt.root)).toBeNull();
+  });
+
   test('postOrderRec should recursively traverse in left-right-root order', () => {
     const post = postOrderRec(tree.root);
     expect(post).toBeInstanceOf(Array);
@@ -118,6 +148,16 @@ describe('Binary Tree tests', () => {
     expect(post[9]).toEqual(1);
   });
 
+  test('postOrderRec should return null if no root', () => {
+    const bt = new BinaryTree();
+    expect(postOrderRec(bt.root)).toBeNull();
+  });
+
+  test('postOrderIt should return null if no root', () => {
+    const bt = new BinaryTree();
+    expect(postOrderIt(bt.root)).toBeNull();
+  });
+
   test('inOrderRec should recursively traverse in left-root-right order', () => {
     const inOrder = inOrderRec(tree.root);
     expect(inOrder).toBeInstanceOf(Array);
@@ -131,5 +171,30 @@ describe('Binary Tree tests', () => {
     expect(inOrder[7]).toEqual(7);
     expect(inOrder[8]).toEqual(9);
     expect(inOrder[9]).toEqual(6);
+  });
+
+  test('inOrderIt (no recursion) should traverse in left-root-right order using a stack', () => {
+    const inOrder = inOrderIt(tree.root);
+    expect(inOrder).toBeInstanceOf(Array);
+    expect(inOrder[0]).toEqual(4);
+    expect(inOrder[1]).toEqual(2);
+    expect(inOrder[2]).toEqual(5);
+    expect(inOrder[3]).toEqual(1);
+    expect(inOrder[4]).toEqual(10);
+    expect(inOrder[5]).toEqual(3);
+    expect(inOrder[6]).toEqual(8);
+    expect(inOrder[7]).toEqual(7);
+    expect(inOrder[8]).toEqual(9);
+    expect(inOrder[9]).toEqual(6);
+  });
+
+  test('inOrderRec should return null if no root', () => {
+    const bt = new BinaryTree();
+    expect(preOrderRec(bt.root)).toBeNull();
+  });
+
+  test('inOrderIt should return null if no root', () => {
+    const bt = new BinaryTree();
+    expect(preOrderIt(bt.root)).toBeNull();
   });
 }); 
